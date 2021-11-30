@@ -275,6 +275,7 @@ namespace ControlStart.Utils
                         if ((DateTime.Now - f.LastWriteTime).TotalDays >= Global.Instance.LogSaveTime)
                         {
                             File.Delete(fullName);
+                            Global.Instance.RunningLog.WriteRunLog("日志:"+f.Name + "储存到期,已自动删除");
                             GC.Collect();
                         }
                     }

@@ -25,6 +25,9 @@ namespace ControlStart.JobMethod
 
 
 
+
+
+
             #region  保存图片
              
             string name = DateTime.Now.ToString("yyyyMMddHHmmssffff");
