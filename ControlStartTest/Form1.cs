@@ -48,7 +48,7 @@ namespace ControlStartTest
 
         private void uiButton1_Click(object sender, EventArgs e)
         {
-            Cameras.Instance["ABCam"].Start_Real_Mode();
+            Cameras.Instance[0].Start_Real_Mode();
             //mainForm1.ShowControlForm(ControlStart.FormPage.主页面);
             //mainForm1.ShowControlForm(ControlStart.FormPage.产品设置);
             //mainForm1.ShowControlForm(ControlStart.FormPage.工具);

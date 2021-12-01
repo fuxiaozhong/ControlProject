@@ -21,7 +21,7 @@ namespace ControlStart.ControlForms
         }
         public void CamWork(string CamName, HalconDotNet.HObject image)
         {
-
+            form_CameraCalibration?.CamWrok(CamName,image);
 
         }
         public void Read()
@@ -43,16 +43,16 @@ namespace ControlStart.ControlForms
         {
             return hyGlobalVariable_User.GetValue(key);
         }
-        //Form_CameraCalibration form_CameraCalibration;
+        Form_CameraCalibration form_CameraCalibration;
 
         private void Form_Tool_Load(object sender, EventArgs e)
         {
-            //if (form_CameraCalibration == null)
-            //{
-            //    form_CameraCalibration = new Form_CameraCalibration();
-            //}
-            //tabPage1.Controls.Add(form_CameraCalibration);
-            //this.Dock = DockStyle.Fill;
+            if (form_CameraCalibration == null)
+            {
+                form_CameraCalibration = new Form_CameraCalibration();
+            }
+            tabPage1.Controls.Add(form_CameraCalibration);
+            this.Dock = DockStyle.Fill;
 
             if (hyGlobalVariable_System.GetData().Count==0)
             {

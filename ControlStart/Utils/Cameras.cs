@@ -75,6 +75,23 @@ namespace ControlStart.Utils
         }
 
         /// <summary>
+        /// 根据下标去获取相机
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public ICamera this[int index]
+        {
+            get
+            {
+                if (index < cameras.Values.Count)
+                {
+                    return cameras.Values.ElementAt(index);
+                }
+                return cameras.Values.First();
+            }
+        }
+
+        /// <summary>
         /// 添加相机到字典中
         /// </summary>
         /// <param name="cameraName">相机名称</param>

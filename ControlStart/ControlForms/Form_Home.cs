@@ -30,12 +30,29 @@ namespace ControlStart.ControlForms
 
         public void CamWork(string CamName, HalconDotNet.HObject image)
         {
-            Work.CamWork(autoHalconWindow1[0], CamName, image);
+            if (CamName == "ABCam")
+            {
+                Work.CamWork(autoHalconWindow1[0], CamName, image);
+            }
+            else if (CamName == "CDCam")
+            {
+                Work.CamWork(autoHalconWindow1[1], CamName, image);
+            }
+            else if (CamName == "DownCam")
+            {
+                Work.CamWork(autoHalconWindow1[2], CamName, image);
+            }
+            else if (CamName == "Cam1")
+            {
+                Work.CamWork(autoHalconWindow1[3], CamName, image);
+            }
+
+
         }
 
         private void Form_Home_Load(object sender, EventArgs e)
         {
-            autoHalconWindow1.Count = 1;
+            autoHalconWindow1.Count = 4;
             //this.Dock = DockStyle.Fill;
 
         }

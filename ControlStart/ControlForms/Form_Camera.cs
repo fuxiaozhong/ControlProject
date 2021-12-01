@@ -39,6 +39,13 @@ namespace ControlStart.ControlForms
             {
                 comboBox_CamList.SelectedIndex = 0;
             }
+            if (comboBox_CamList.Items.Count == 0)
+            {
+                uiButton1.Enabled = false;
+                uiButton2.Enabled = false;
+                uiButton_SaveConfig.Enabled = false;
+                uiButton_singlePhoto.Enabled = false;
+            }
             //this.Dock = DockStyle.Fill;
         }
 

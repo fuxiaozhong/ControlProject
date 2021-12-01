@@ -42,6 +42,8 @@
             this.登录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.Mian_Panel_Data = new System.Windows.Forms.Panel();
+            this.uiLabel5 = new Sunny.UI.UILabel();
+            this.uiLabel6 = new Sunny.UI.UILabel();
             this.uiLabel2 = new Sunny.UI.UILabel();
             this.uiLabel4 = new Sunny.UI.UILabel();
             this.uiLabel_NowProduct = new Sunny.UI.UILabel();
@@ -237,6 +239,8 @@
             // Mian_Panel_Data
             // 
             this.Mian_Panel_Data.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.Mian_Panel_Data.Controls.Add(this.uiLabel5);
+            this.Mian_Panel_Data.Controls.Add(this.uiLabel6);
             this.Mian_Panel_Data.Controls.Add(this.uiLabel2);
             this.Mian_Panel_Data.Controls.Add(this.uiLabel4);
             this.Mian_Panel_Data.Controls.Add(this.uiLabel_NowProduct);
@@ -251,6 +255,28 @@
             this.Mian_Panel_Data.Name = "Mian_Panel_Data";
             this.Mian_Panel_Data.Size = new System.Drawing.Size(337, 92);
             this.Mian_Panel_Data.TabIndex = 2;
+            // 
+            // uiLabel5
+            // 
+            this.uiLabel5.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.uiLabel5.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            this.uiLabel5.Location = new System.Drawing.Point(84, 62);
+            this.uiLabel5.Name = "uiLabel5";
+            this.uiLabel5.Size = new System.Drawing.Size(79, 20);
+            this.uiLabel5.TabIndex = 10;
+            this.uiLabel5.Text = "0s";
+            this.uiLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // uiLabel6
+            // 
+            this.uiLabel6.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.uiLabel6.ForeColor = System.Drawing.Color.White;
+            this.uiLabel6.Location = new System.Drawing.Point(3, 62);
+            this.uiLabel6.Name = "uiLabel6";
+            this.uiLabel6.Size = new System.Drawing.Size(75, 20);
+            this.uiLabel6.TabIndex = 9;
+            this.uiLabel6.Text = "程序运行:";
+            this.uiLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // uiLabel2
             // 
@@ -393,7 +419,6 @@
             this.richTextBox_RunLog.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             this.richTextBox_RunLog.MouseEnter += new System.EventHandler(this.richTextBox_RunLog_MouseEnter);
             this.richTextBox_RunLog.MouseLeave += new System.EventHandler(this.richTextBox_RunLog_MouseLeave);
-            this.richTextBox_RunLog.MouseMove += new System.Windows.Forms.MouseEventHandler(this.richTextBox_RunLog_MouseMove);
             // 
             // tabPage2
             // 
@@ -546,6 +571,7 @@
             this.Name = "MainForm";
             this.Size = new System.Drawing.Size(814, 540);
             this.Load += new System.EventHandler(this.MianForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.menuStrip_Top.ResumeLayout(false);
             this.menuStrip_Top.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -600,5 +626,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private Sunny.UI.UILabel label_Title;
         private Sunny.UI.UILabel label_Time;
+        private Sunny.UI.UILabel uiLabel5;
+        private Sunny.UI.UILabel uiLabel6;
     }
 }

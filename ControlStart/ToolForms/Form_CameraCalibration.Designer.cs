@@ -30,9 +30,6 @@ namespace ControlStart.ToolForms
         private void InitializeComponent()
         {
             this.uiLabel1 = new Sunny.UI.UILabel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // uiLabel1
@@ -48,35 +45,14 @@ namespace ControlStart.ToolForms
             this.uiLabel1.Text = "相机标定";
             this.uiLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(3, 39);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(235, 208);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "9点标定";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "工位寻找";
-            // 
             // Form_CameraCalibration
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.uiLabel1);
+            this.ForeColor = System.Drawing.Color.White;
             this.Name = "Form_CameraCalibration";
             this.Size = new System.Drawing.Size(677, 392);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -84,7 +60,5 @@ namespace ControlStart.ToolForms
         #endregion
 
         private Sunny.UI.UILabel uiLabel1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
     }
 }

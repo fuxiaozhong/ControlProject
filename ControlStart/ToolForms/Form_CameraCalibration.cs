@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HalconDotNet;
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +18,16 @@ namespace ControlStart.ToolForms
         {
             InitializeComponent();
             this.Dock = DockStyle.Fill;
+        }
+
+        /// <summary>
+        /// 标定事件
+        /// </summary>
+        /// <param name="camName"></param>
+        /// <param name="image"></param>
+        internal void CamWrok(string camName, HObject image)
+        {
+           
         }
     }
 }

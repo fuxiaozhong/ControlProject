@@ -43,6 +43,7 @@ namespace ControlStart.Product
                 nowProduct = product;
                 uiLabel1.Text = "产品修改 - " + product.ProductName;
                 halconWindow1.Disp_Image(product.ProductImage?.Clone());
+                uiCheckBox1.Checked = nowProduct.Check_SilverPaste;
             }
             //this.Dock = DockStyle.Fill;
 
@@ -121,6 +122,7 @@ namespace ControlStart.Product
                             goto step;
                         }
                         nowProduct.ProductImage = halconWindow1.Image;
+                        nowProduct.Check_SilverPaste = uiCheckBox1.Checked;
                         nowProduct.ProductName = name;
                         nowProduct.CreateTime = DateTime.Now;
                         HYForm_Waiting form_Waiting = new HYForm_Waiting(SaveProduct_Add, "正在保存产品数据,请稍等!");
@@ -208,14 +210,24 @@ namespace ControlStart.Product
             //}
 
             uiComboBox_Mark.SelectedIndex = 0;
+            uiComboBox_Cam.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// 拍照
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void uiButton1_Click(object sender, EventArgs e)
         {
             Cameras.Instance[uiComboBox_Cam.Text].Set_Soft_Trigger_Model();
             Cameras.Instance[uiComboBox_Cam.Text].Soft_Trigger();
         }
-
+        /// <summary>
+        /// 显示图片
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void uiButton_Disp_Click(object sender, EventArgs e)
         {
             if (uiComboBox_Cam.SelectedIndex == 0 && uiComboBox_Mark.SelectedIndex == 0)
@@ -244,6 +256,11 @@ namespace ControlStart.Product
             }
         }
 
+        /// <summary>
+        /// 框选银浆位置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void uiButton7_Click(object sender, EventArgs e)
         {
             Rectangle1 rectangle = halconWindow1.Draw_Rectangle1("blue");
@@ -274,8 +291,189 @@ namespace ControlStart.Product
                     HOperatorSet.CopyObj(rectangle.rectangle1, out nowProduct.DownCam_Right_SilverPaste_Location, 1, 1);
                 }
             }
+
+            halconWindow1.Disp_Region(rectangle.rectangle1,"blue","margin");
             rectangle.rectangle1.Dispose();
 
+        }
+        /// <summary>
+        /// 框选银浆范围
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uiButton9_Click(object sender, EventArgs e)
+        {
+            Rectangle1 rectangle = halconWindow1.Draw_Rectangle1("blue");
+            if (rectangle.rectangle1 != null)
+            {
+                if (uiComboBox_Cam.SelectedIndex == 0 && uiComboBox_Mark.SelectedIndex == 0)
+                {
+                    HOperatorSet.CopyObj(rectangle.rectangle1, out nowProduct.ABCam_Left_SilverPaste_Scope, 1, 1);
+                }
+                else if (uiComboBox_Cam.SelectedIndex == 0 && uiComboBox_Mark.SelectedIndex == 1)
+                {
+                    HOperatorSet.CopyObj(rectangle.rectangle1, out nowProduct.ABCam_Right_SilverPaste_Scope, 1, 1);
+                }
+                else if (uiComboBox_Cam.SelectedIndex == 1 && uiComboBox_Mark.SelectedIndex == 0)
+                {
+                    HOperatorSet.CopyObj(rectangle.rectangle1, out nowProduct.CDCam_Left_SilverPaste_Scope, 1, 1);
+                }
+                else if (uiComboBox_Cam.SelectedIndex == 1 && uiComboBox_Mark.SelectedIndex == 1)
+                {
+                    HOperatorSet.CopyObj(rectangle.rectangle1, out nowProduct.CDCam_Right_SilverPaste_Scope, 1, 1);
+                }
+                else if (uiComboBox_Cam.SelectedIndex == 2 && uiComboBox_Mark.SelectedIndex == 0)
+                {
+                    HOperatorSet.CopyObj(rectangle.rectangle1, out nowProduct.DownCam_Left_SilverPaste_Scope, 1, 1);
+                }
+                else if (uiComboBox_Cam.SelectedIndex == 2 && uiComboBox_Mark.SelectedIndex == 1)
+                {
+                    HOperatorSet.CopyObj(rectangle.rectangle1, out nowProduct.DownCam_Right_SilverPaste_Scope, 1, 1);
+                }
+            }
+            halconWindow1.Disp_Region(rectangle.rectangle1, "blue", "margin");
+            rectangle.rectangle1.Dispose();
+        }
+        /// <summary>
+        /// 框选屏幕银浆范围
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uiButton11_Click(object sender, EventArgs e)
+        {
+            Rectangle1 rectangle = halconWindow1.Draw_Rectangle1("blue");
+            if (rectangle.rectangle1 != null)
+            {
+                if (uiComboBox_Cam.SelectedIndex == 0 && uiComboBox_Mark.SelectedIndex == 0)
+                {
+                    HOperatorSet.CopyObj(rectangle.rectangle1, out nowProduct.ABCam_Left_SilverPaste_ScreenScope, 1, 1);
+                }
+                else if (uiComboBox_Cam.SelectedIndex == 0 && uiComboBox_Mark.SelectedIndex == 1)
+                {
+                    HOperatorSet.CopyObj(rectangle.rectangle1, out nowProduct.ABCam_Right_SilverPaste_ScreenScope, 1, 1);
+                }
+                else if (uiComboBox_Cam.SelectedIndex == 1 && uiComboBox_Mark.SelectedIndex == 0)
+                {
+                    HOperatorSet.CopyObj(rectangle.rectangle1, out nowProduct.CDCam_Left_SilverPaste_ScreenScope, 1, 1);
+                }
+                else if (uiComboBox_Cam.SelectedIndex == 1 && uiComboBox_Mark.SelectedIndex == 1)
+                {
+                    HOperatorSet.CopyObj(rectangle.rectangle1, out nowProduct.CDCam_Right_SilverPaste_ScreenScope, 1, 1);
+                }
+                else if (uiComboBox_Cam.SelectedIndex == 2 && uiComboBox_Mark.SelectedIndex == 0)
+                {
+                    HOperatorSet.CopyObj(rectangle.rectangle1, out nowProduct.DownCam_Left_SilverPaste_ScreenScope, 1, 1);
+                }
+                else if (uiComboBox_Cam.SelectedIndex == 2 && uiComboBox_Mark.SelectedIndex == 1)
+                {
+                    HOperatorSet.CopyObj(rectangle.rectangle1, out nowProduct.DownCam_Right_SilverPaste_ScreenScope, 1, 1);
+                }
+            }
+            halconWindow1.Disp_Region(rectangle.rectangle1, "blue", "margin");
+            rectangle.rectangle1.Dispose();
+        }
+        /// <summary>
+        /// 显示银浆位置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uiButton8_Click(object sender, EventArgs e)
+        {
+            if (uiComboBox_Cam.SelectedIndex == 0 && uiComboBox_Mark.SelectedIndex == 0)
+            {
+                halconWindow1.Disp_Region(nowProduct.ABCam_Left_SilverPaste_Location,"blue","margin");
+            }
+            else if (uiComboBox_Cam.SelectedIndex == 0 && uiComboBox_Mark.SelectedIndex == 1)
+            {
+                halconWindow1.Disp_Region(nowProduct.ABCam_Right_SilverPaste_Location, "blue","margin");
+            }
+            else if (uiComboBox_Cam.SelectedIndex == 1 && uiComboBox_Mark.SelectedIndex == 0)
+            {
+                halconWindow1.Disp_Region(nowProduct.CDCam_Left_SilverPaste_Location, "blue","margin");
+            }
+            else if (uiComboBox_Cam.SelectedIndex == 1 && uiComboBox_Mark.SelectedIndex == 1)
+            {
+                halconWindow1.Disp_Region(nowProduct.CDCam_Right_SilverPaste_Location, "blue","margin");
+            }
+            else if (uiComboBox_Cam.SelectedIndex == 2 && uiComboBox_Mark.SelectedIndex == 0)
+            {
+                halconWindow1.Disp_Region(nowProduct.DownCam_Left_SilverPaste_Location, "blue","margin");
+            }
+            else if (uiComboBox_Cam.SelectedIndex == 2 && uiComboBox_Mark.SelectedIndex == 1)
+            {
+                halconWindow1.Disp_Region(nowProduct.DownCam_Right_SilverPaste_Location, "blue","margin");
+            }
+        }
+
+        /// <summary>
+        /// 显示银浆范围
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uiButton10_Click(object sender, EventArgs e)
+        {
+            if (uiComboBox_Cam.SelectedIndex == 0 && uiComboBox_Mark.SelectedIndex == 0)
+            {
+                halconWindow1.Disp_Region(nowProduct.ABCam_Left_SilverPaste_Scope, "blue", "margin");
+            }
+            else if (uiComboBox_Cam.SelectedIndex == 0 && uiComboBox_Mark.SelectedIndex == 1)
+            {
+                halconWindow1.Disp_Region(nowProduct.ABCam_Right_SilverPaste_Scope, "blue", "margin");
+            }
+            else if (uiComboBox_Cam.SelectedIndex == 1 && uiComboBox_Mark.SelectedIndex == 0)
+            {
+                halconWindow1.Disp_Region(nowProduct.CDCam_Left_SilverPaste_Scope, "blue", "margin");
+            }
+            else if (uiComboBox_Cam.SelectedIndex == 1 && uiComboBox_Mark.SelectedIndex == 1)
+            {
+                halconWindow1.Disp_Region(nowProduct.CDCam_Right_SilverPaste_Scope, "blue", "margin");
+            }
+            else if (uiComboBox_Cam.SelectedIndex == 2 && uiComboBox_Mark.SelectedIndex == 0)
+            {
+                halconWindow1.Disp_Region(nowProduct.DownCam_Left_SilverPaste_Scope, "blue", "margin");
+            }
+            else if (uiComboBox_Cam.SelectedIndex == 2 && uiComboBox_Mark.SelectedIndex == 1)
+            {
+                halconWindow1.Disp_Region(nowProduct.DownCam_Right_SilverPaste_Scope, "blue", "margin");
+            }
+        }
+
+        /// <summary>
+        /// 显示银浆屏幕范围
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void uiButton12_Click(object sender, EventArgs e)
+        {
+            if (uiComboBox_Cam.SelectedIndex == 0 && uiComboBox_Mark.SelectedIndex == 0)
+            {
+                halconWindow1.Disp_Region(nowProduct.ABCam_Left_SilverPaste_ScreenScope, "blue", "margin");
+            }
+            else if (uiComboBox_Cam.SelectedIndex == 0 && uiComboBox_Mark.SelectedIndex == 1)
+            {
+                halconWindow1.Disp_Region(nowProduct.ABCam_Right_SilverPaste_ScreenScope, "blue", "margin");
+            }
+            else if (uiComboBox_Cam.SelectedIndex == 1 && uiComboBox_Mark.SelectedIndex == 0)
+            {
+                halconWindow1.Disp_Region(nowProduct.CDCam_Left_SilverPaste_ScreenScope, "blue", "margin");
+            }
+            else if (uiComboBox_Cam.SelectedIndex == 1 && uiComboBox_Mark.SelectedIndex == 1)
+            {
+                halconWindow1.Disp_Region(nowProduct.CDCam_Right_SilverPaste_ScreenScope, "blue", "margin");
+            }
+            else if (uiComboBox_Cam.SelectedIndex == 2 && uiComboBox_Mark.SelectedIndex == 0)
+            {
+                halconWindow1.Disp_Region(nowProduct.DownCam_Left_SilverPaste_ScreenScope, "blue", "margin");
+            }
+            else if (uiComboBox_Cam.SelectedIndex == 2 && uiComboBox_Mark.SelectedIndex == 1)
+            {
+                halconWindow1.Disp_Region(nowProduct.DownCam_Right_SilverPaste_ScreenScope, "blue", "margin");
+            }
+        }
+
+        private void uiCheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            nowProduct.Check_SilverPaste = uiCheckBox1.Checked;
         }
     }
 }

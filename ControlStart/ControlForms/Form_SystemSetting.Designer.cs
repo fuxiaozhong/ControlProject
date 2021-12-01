@@ -1141,9 +1141,9 @@ namespace ControlStart.ControlForms
             this.tabPage7.Controls.Add(this.textBox1);
             this.tabPage7.Controls.Add(this.label1);
             this.tabPage7.Controls.Add(this.hySerialPort2);
-            this.tabPage7.Location = new System.Drawing.Point(0, 20);
+            this.tabPage7.Location = new System.Drawing.Point(0, 40);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(566, 250);
+            this.tabPage7.Size = new System.Drawing.Size(200, 60);
             this.tabPage7.TabIndex = 1;
             this.tabPage7.Text = "PLC";
             // 
@@ -1261,9 +1261,9 @@ namespace ControlStart.ControlForms
             this.tabPage8.Controls.Add(this.uiLabel14);
             this.tabPage8.Controls.Add(this.sw_ch1);
             this.tabPage8.Controls.Add(this.hySerialPort1);
-            this.tabPage8.Location = new System.Drawing.Point(0, 20);
+            this.tabPage8.Location = new System.Drawing.Point(0, 40);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(566, 250);
+            this.tabPage8.Size = new System.Drawing.Size(200, 60);
             this.tabPage8.TabIndex = 2;
             this.tabPage8.Text = "光源";
             // 

@@ -390,6 +390,10 @@ namespace ControlStart.ControlForms
             //相机配置设置
 
 
+
+
+
+
             Global.Instance.Save();
             HYMessageBox.ShowNormal("保存成功");
         }

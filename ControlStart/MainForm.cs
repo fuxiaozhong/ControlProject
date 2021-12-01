@@ -27,15 +27,15 @@ namespace ControlStart
 
         //外部输出 图片委托
         public delegate void ExternalOutputImage(string CamName, HalconDotNet.HObject image);
-        //protected override CreateParams CreateParams
-        //{
-        //    get
-        //    {
-        //        var parms = base.CreateParams;
-        //        parms.Style &= ~0x02000000; // Turn off WS_CLIPCHILDREN
-        //        return parms;
-        //    }
-        //}
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                var parms = base.CreateParams;
+                parms.Style &= ~0x02000000; // Turn off WS_CLIPCHILDREN
+                return parms;
+            }
+        }
         public MainForm()
         {
             InitializeComponent();
@@ -47,12 +47,13 @@ namespace ControlStart
         {
             //Dock = DockStyle.Fill;
         }
-
+        DateTime startTime;
         /// <summary>
         /// 初始化程序
         /// </summary>
         public void Initialize()
         {
+            startTime = DateTime.Now;
             //创建文件夹
             if (!Directory.Exists(System.Windows.Forms.Application.StartupPath + "\\Vision_Config"))
                 Directory.CreateDirectory(System.Windows.Forms.Application.StartupPath + "\\Vision_Config");
@@ -190,21 +191,21 @@ namespace ControlStart
 
 
 
-
-
             Global.Instance.RunningLog.WriteRunLog("参数加载成功.");
             this.Visible = true;
 
-
-            Work.MonitorTakePhotosSignal();
+            //Work.MonitorTakePhotosSignal();
 
         }
 
+
+        /// <summary>
+        /// 全局配置刷新
+        /// </summary>
         private void Using_the_UISettings()
         {
             while (true)
             {
-                
                 try
                 {
                     label_Time.Text = DateTime.Now.ToString();
@@ -223,9 +224,6 @@ namespace ControlStart
                         label_Title.Text = (string)obj;
                     else
                         label_Title.Text = "视觉检测软件";
-
-
-
                 }
                 catch (Exception)
                 {
@@ -234,6 +232,10 @@ namespace ControlStart
             }
         }
 
+
+        /// <summary>
+        /// 显示数据信息刷新
+        /// </summary>
         private void DataRefreshWorkThread()
         {
             while (true)
@@ -261,6 +263,11 @@ namespace ControlStart
                 {
                     Global.Instance.Power = "操作员";
                 }
+                uiLabel5.Invoke(new Action(delegate
+                {
+                    uiLabel5.Text = (DateTime.Now - startTime).TotalSeconds.ToString("0.00") + "s";
+                }));
+
 
                 Thread.Sleep(100);
             }
@@ -273,6 +280,12 @@ namespace ControlStart
         private Form_Tool toolform;
         private Form_Data dataform;
 
+
+        /// <summary>
+        /// 菜单切换
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void 主页面ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (showform == true)
@@ -385,7 +398,11 @@ namespace ControlStart
             }
             return true;
         }
-
+        /// <summary>
+        /// 关闭软件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseEvent(object sender, EventArgs e)
         {
             //IniFunc.writeString();
@@ -421,6 +438,10 @@ namespace ControlStart
             }
 
         }
+
+        /// <summary>
+        /// 开始运行
+        /// </summary>
         private void RunMethod()
         {
             Mian_Panel_Home.Controls.Clear();
@@ -435,6 +456,9 @@ namespace ControlStart
             Global.Instance.RunningLog.WriteRunLog("开始运行...");
         }
 
+        /// <summary>
+        /// 停止运行
+        /// </summary>
         private void StopMethod()
         {
             SetCamMode(CamStep.停止模式);
@@ -444,9 +468,14 @@ namespace ControlStart
             Global.Instance.RunningLog.WriteRunLog("停止运行...");
         }
 
+
+        /// <summary>
+        /// 相机出图  逻辑
+        /// </summary>
+        /// <param name="CamName"></param>
+        /// <param name="image"></param>
         public void CamWork(string CamName, HalconDotNet.HObject image)
         {
-
             switch (Cameras.Instance.step)
             {
                 case CamStep.相机:
@@ -474,6 +503,12 @@ namespace ControlStart
 
         public event ExternalOutputImage _ExternalOutputImage;
 
+
+        /// <summary>
+        /// 日志显示清除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
             if (richTextBox_RunLog.TextLength > 500000)
@@ -506,11 +541,15 @@ namespace ControlStart
         {
             RunMethod();
         }
-        //停止运行
+        /// <summary>
+        /// 停止运行
+        /// </summary>
         public void Stop()
         {
             StopMethod();
         }
+
+
         /// <summary>
         /// 相机对象 例: mainForm1.Cameras["Cam1"].Soft_Trigger();
         /// </summary>
@@ -522,6 +561,12 @@ namespace ControlStart
             }
         }
         bool showform = false;
+
+
+        /// <summary>
+        /// 外部跳转页面
+        /// </summary>
+        /// <param name="page"></param>
         public void ShowControlForm(FormPage page)
         {
             showform = true;
@@ -586,6 +631,18 @@ namespace ControlStart
             });
 
         }
+       
+        public Bitmap GetScreen()
+        {
+            //获取整个屏幕图像,不包括任务栏
+            Rectangle ScreenArea = Screen.PrimaryScreen.Bounds;
+            Bitmap bmp = new Bitmap(ScreenArea.Width, ScreenArea.Height);
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.CopyFromScreen(0, 0, 0, 0, new Size(ScreenArea.Width, ScreenArea.Height));
+            }
+            return bmp;
+        }
 
 
 
@@ -632,9 +689,9 @@ namespace ControlStart
             (sender as RichTextBox).ScrollBars = RichTextBoxScrollBars.None;
         }
 
-        private void richTextBox_RunLog_MouseMove(object sender, MouseEventArgs e)
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-
+                
         }
     }
 
@@ -674,11 +731,29 @@ namespace ControlStart
     }
     public enum FormPage
     {
+        /// <summary>
+        /// 主页面  显示页面
+        /// </summary>
         主页面 = 1,
+        /// <summary>
+        /// 相机页面  相机操作
+        /// </summary>
         相机 = 2,
+        /// <summary>
+        ///产品参数设置页面
+        /// </summary>
         产品设置 = 3,
+        /// <summary>
+        /// 工具页面
+        /// </summary>
         工具 = 4,
+        /// <summary>
+        /// 数据显示页面
+        /// </summary>
         数据 = 5,
+        /// <summary>
+        /// 系统相关设置页面
+        /// </summary>
         系统设置 = 6
     }
 

@@ -34,6 +34,7 @@ namespace ControlStart.Product
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.halconWindow1 = new ToolKit.DisplayWindow.HalconWindow();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.uiCheckBox1 = new Sunny.UI.UICheckBox();
             this.hyCreateModel21 = new ToolKit.HYControls.HYCreateModel2();
             this.btn_Save = new Sunny.UI.UISymbolButton();
             this.uiButton12 = new Sunny.UI.UIButton();
@@ -48,7 +49,6 @@ namespace ControlStart.Product
             this.uiButton7 = new Sunny.UI.UIButton();
             this.uiLabel2 = new Sunny.UI.UILabel();
             this.uiButton_TakePhotos = new Sunny.UI.UIButton();
-            this.uiCheckBox1 = new Sunny.UI.UICheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -144,12 +144,27 @@ namespace ControlStart.Product
             this.panel1.Size = new System.Drawing.Size(394, 356);
             this.panel1.TabIndex = 9;
             // 
+            // uiCheckBox1
+            // 
+            this.uiCheckBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiCheckBox1.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.uiCheckBox1.ForeColor = System.Drawing.Color.White;
+            this.uiCheckBox1.Location = new System.Drawing.Point(269, 61);
+            this.uiCheckBox1.MinimumSize = new System.Drawing.Size(1, 1);
+            this.uiCheckBox1.Name = "uiCheckBox1";
+            this.uiCheckBox1.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
+            this.uiCheckBox1.Size = new System.Drawing.Size(113, 29);
+            this.uiCheckBox1.Style = Sunny.UI.UIStyle.Custom;
+            this.uiCheckBox1.TabIndex = 26;
+            this.uiCheckBox1.Text = "银浆检测";
+            this.uiCheckBox1.CheckedChanged += new System.EventHandler(this.uiCheckBox1_CheckedChanged);
+            // 
             // hyCreateModel21
             // 
             this.hyCreateModel21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.hyCreateModel21.Draw = false;
             this.hyCreateModel21.HalconWindow = this.halconWindow1;
-            this.hyCreateModel21.Index = 0;
+            this.hyCreateModel21.Index = 1;
             this.hyCreateModel21.Location = new System.Drawing.Point(3, 30);
             this.hyCreateModel21.Margin = new System.Windows.Forms.Padding(0);
             this.hyCreateModel21.Name = "hyCreateModel21";
@@ -197,6 +212,7 @@ namespace ControlStart.Product
             this.uiButton12.Size = new System.Drawing.Size(110, 25);
             this.uiButton12.TabIndex = 24;
             this.uiButton12.Text = "显示屏幕银浆范围";
+            this.uiButton12.Click += new System.EventHandler(this.uiButton12_Click);
             // 
             // uiButton11
             // 
@@ -209,6 +225,7 @@ namespace ControlStart.Product
             this.uiButton11.Size = new System.Drawing.Size(110, 25);
             this.uiButton11.TabIndex = 23;
             this.uiButton11.Text = "框选屏幕银浆范围";
+            this.uiButton11.Click += new System.EventHandler(this.uiButton11_Click);
             // 
             // uiButton10
             // 
@@ -221,6 +238,7 @@ namespace ControlStart.Product
             this.uiButton10.Size = new System.Drawing.Size(110, 25);
             this.uiButton10.TabIndex = 22;
             this.uiButton10.Text = "显示银浆范围";
+            this.uiButton10.Click += new System.EventHandler(this.uiButton10_Click);
             // 
             // uiComboBox_Cam
             // 
@@ -253,6 +271,7 @@ namespace ControlStart.Product
             this.uiButton8.Size = new System.Drawing.Size(110, 25);
             this.uiButton8.TabIndex = 20;
             this.uiButton8.Text = "显示银浆位置";
+            this.uiButton8.Click += new System.EventHandler(this.uiButton8_Click);
             // 
             // uiComboBox_Mark
             // 
@@ -308,6 +327,7 @@ namespace ControlStart.Product
             this.uiButton9.Size = new System.Drawing.Size(110, 25);
             this.uiButton9.TabIndex = 21;
             this.uiButton9.Text = "框选银浆范围";
+            this.uiButton9.Click += new System.EventHandler(this.uiButton9_Click);
             // 
             // uiButton7
             // 
@@ -345,20 +365,6 @@ namespace ControlStart.Product
             this.uiButton_TakePhotos.TabIndex = 13;
             this.uiButton_TakePhotos.Text = "拍    照";
             this.uiButton_TakePhotos.Click += new System.EventHandler(this.uiButton1_Click);
-            // 
-            // uiCheckBox1
-            // 
-            this.uiCheckBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiCheckBox1.Font = new System.Drawing.Font("微软雅黑", 9F);
-            this.uiCheckBox1.ForeColor = System.Drawing.Color.White;
-            this.uiCheckBox1.Location = new System.Drawing.Point(269, 61);
-            this.uiCheckBox1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.uiCheckBox1.Name = "uiCheckBox1";
-            this.uiCheckBox1.Padding = new System.Windows.Forms.Padding(22, 0, 0, 0);
-            this.uiCheckBox1.Size = new System.Drawing.Size(113, 29);
-            this.uiCheckBox1.Style = Sunny.UI.UIStyle.Custom;
-            this.uiCheckBox1.TabIndex = 26;
-            this.uiCheckBox1.Text = "银浆检测";
             // 
             // Form_ProductAddorUpData
             // 

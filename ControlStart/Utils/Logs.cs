@@ -164,6 +164,7 @@ namespace ControlStart.Utils
                                     endindex = (control as RichTextBox).TextLength;
                                     (control as RichTextBox).Select(startIndex, endindex);
                                     (control as RichTextBox).SelectionColor = Color.Red;
+                                   
                                     break;
 
                                 case "正常":
@@ -186,7 +187,7 @@ namespace ControlStart.Utils
 
             }
         }
-
+        
         private object obj = new object();
 
 
@@ -275,7 +276,7 @@ namespace ControlStart.Utils
                         if ((DateTime.Now - f.LastWriteTime).TotalDays >= Global.Instance.LogSaveTime)
                         {
                             File.Delete(fullName);
-                            Global.Instance.RunningLog.WriteRunLog("日志:"+f.Name + "储存到期,已自动删除");
+                            Global.Instance.RunningLog.WriteRunLog("日志:" + f.Name + "储存到期,已自动删除");
                             GC.Collect();
                         }
                     }

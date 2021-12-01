@@ -31,7 +31,7 @@ namespace ToolKit.CommunicAtion
         private string _ip = string.Empty;
         private int _port = 0;
         private Socket _socket = null;
-        private byte[] buffer = new byte[1024 * 1024 * 2];
+ 
 
         [NonSerialized]
         public Dictionary<string, Socket> clients = new Dictionary<string, Socket>();
@@ -200,12 +200,13 @@ namespace ToolKit.CommunicAtion
             {
                 try
                 {
+                    byte[] buffer = new byte[1024 * 1024 * 2];
                     //获取从客户端发来的数据
                     int length = clientSocket.Receive(buffer);
                     if (length > 0)
                     {
                         Console.WriteLine("接收客户端{0},消息:{1}", clientSocket.RemoteEndPoint.ToString(), Encoding.UTF8.GetString(buffer, 0, length));
-                        Message = Encoding.UTF8.GetString(buffer, 0, length);
+                        Message = Encoding.Default.GetString(buffer, 0, length);
                         SocketReceiveMessage?.Invoke(clientSocket, clientSocket.RemoteEndPoint.ToString(), Encoding.UTF8.GetString(buffer, 0, length));
                     }
                 }
